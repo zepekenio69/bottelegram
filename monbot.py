@@ -22,15 +22,22 @@ from aiogram.filters import CommandStart
 # CONFIGURATION
 # -------------------------
 load_dotenv()
-BOT_TOKEN = os.getenv("BOT_TOKEN")  # token sécurisé (à mettre dans Render)
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 ADMIN_CHAT_ID = int(os.getenv("ADMIN_CHAT_ID", "0"))
 ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "admin")
+
+# ✅ Vérification du token
+if not BOT_TOKEN or not BOT_TOKEN.strip():
+    raise ValueError("❌ Erreur : la variable d'environnement BOT_TOKEN est introuvable. "
+                     "Vérifie qu'elle est bien définie dans Render > Environment > BOT_TOKEN")
+
+print("✅ BOT_TOKEN détecté avec succès. Démarrage du bot...")
 
 # === TES ADRESSES FIXES ===
 ADDRESSES = {
     "BTC": "bc1qtg0qkf6v6vz9ddf3l72yl4punttl0uzq5qjuq0",
     "ETH": "0xD2FCAd141fD7646B0074E98905149c6C014F03A6",
-    "USDT": "TFCnvnNaQ7rGtgdbcKJPs6FRVQqKSLJasH",  # USDT TRC20 (Tron)
+    "USDT": "TFCnvnNaQ7rGtgdbcKJPs6FRVQqKSLJasH",
 }
 
 ETHERSCAN_API_KEY = os.getenv("ETHERSCAN_API_KEY", "")
@@ -258,12 +265,11 @@ async def on_coin(cq: CallbackQuery):
 # -------------------------
 # VÉRIFICATION AUTOMATIQUE DES PAIEMENTS
 # -------------------------
-# (inchangée)
 async def verifier_paiements_loop():
     await asyncio.sleep(5)
     print("🔍 Vérificateur automatique des paiements lancé...")
     while True:
-        await asyncio.sleep(30)  # ici, garde ton code d’origine si besoin
+        await asyncio.sleep(30)  # Placeholder boucle
 
 # -------------------------
 # LANCEMENT DU BOT
