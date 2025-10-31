@@ -1,3 +1,4 @@
-pyTelegramBotAPI
+aiogram
 requests
 python-dotenv
+pyTelegramBotAPI
